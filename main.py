@@ -60,7 +60,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         if not extracted_text.strip():
             raise HTTPException(status_code=400, detail="No readable text found in the PDF.")
 
-        PDF_TEXT_STORE = extracted_text[:40000]
+        PDF_TEXT_STORE = extracted_text[:15000]
 
         return {
             "filename": file.filename, 
@@ -113,4 +113,3 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
-    
